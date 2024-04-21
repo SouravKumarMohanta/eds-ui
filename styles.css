@@ -1,0 +1,95 @@
+body {
+  font-family: adobe-clean, Source Sans Pro, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, sans-serif;
+}
+nav.top-nav {
+  background-color: #323232;
+  align-items: center;
+}
+nav .container,
+main {
+  display: flex;
+  max-width: 1200px;
+  width: 100%;
+  justify-content: space-between;
+  margin: auto;
+}
+nav .logo {
+  align-items: center;
+  display: flex;
+  color: #fa0f00;
+  padding: 0px;
+  text-decoration: none;
+}
+nav .logo-text:before {
+  content: "";
+  margin-left: 10px;
+}
+nav .logo-text {
+  font-weight: 700;
+  font-size: 18px;
+}
+nav .logo-image {
+  width: 25px;
+}
+nav ul {
+  list-style-type: none;
+  display: flex;
+  padding: 0px;
+  margin: 10px 0px;
+  align-items: center;
+}
+nav ul li a {
+  color: #aaaaaa;
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 14px;
+}
+nav ul li:not(:first-child) {
+  margin-left: 20px;
+}
+nav.bottom-nav {
+  background-color: #004c97;
+}
+nav.bottom-nav a {
+  color: #ffffff;
+  font-weight: 700;
+}
+main header {
+  border-bottom: 1px solid #f5f5f5;
+}
+main p,
+aside p {
+  color: ##7e7e7e;
+  font-weight: 300;
+}
+main p.subtitle,
+aside p.subtitle {
+  font-weight: 300;
+  font-size: 18px;
+  color: #838383;
+}
+main p.date {
+  color: #989898;
+  font-size: 14px;
+  font-weight: 500;
+}
+main a,
+aside a {
+  color: #3b71ac;
+  text-decoration: none;
+}
+aside p {
+  font-size: 14px;
+}
+aside p.subtitle {
+  font-weight: 700;
+  font-size: 14px;
+}
+main article {
+  flex: 75%;
+}
+main aside {
+  flex: 25%;
+  margin: 0px 20px;
+}
