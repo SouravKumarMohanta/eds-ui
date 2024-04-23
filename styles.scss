@@ -1,0 +1,173 @@
+$font-family-muli: "muli";
+$font-family-source-serif-pro: "source-serif-pro";
+$font-body-small: 14px;
+$font-body-medium: 16px;
+$font-body-large: 20px;
+
+$color-gray: #e5e5e7;
+
+@import "_aem-grid";
+
+@mixin list-styles {
+  list-style: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #1b252c;
+}
+
+body {
+  font-family: $font-family-muli;
+  font-size: $font-body-medium;
+  align-items: center;
+  
+}
+section {
+  display: grid;
+  scroll-behavior: auto;
+  scroll-padding: 20px;
+  grid-gap: 20px; // Spacing between grid items
+  padding-left: 200px;
+  padding-bottom: 100px;
+}
+
+
+header {
+  font-size: $font-body-small;
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10%;
+  border-bottom: solid $color-gray;
+
+  nav ul {
+    display: flex;
+    @include list-styles;
+
+    li {
+      padding: 10px;
+    }
+
+    .submenu {
+      display: none;
+      position: fixed;
+      justify-content: space-between;
+      width: 100vw;
+      top: 44px;
+      left: 0px;
+      background-color: #fff;
+      border-top: solid $color-gray;
+
+      .column {
+        display: block;
+        ul {
+          display: block;
+          @include list-styles;
+
+          li {
+            padding: 0 0 5px;
+          }
+        }
+      }
+    }
+
+    li:hover {
+      .submenu {
+        display: flex;
+        padding: 10px 10% 0;
+      }
+    }
+  }
+
+  .header-actions {
+    button {
+      font-size: $font-body-small;
+      background: none;
+      border: none;
+      margin: 5px;
+
+      span {
+        vertical-align: 40%;
+      }
+    }
+  }
+}
+
+.logo img {
+  width: 112px;
+  height: 48px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+main {
+  height: 350px;
+  margin-bottom: 100px;
+  padding-bottom: 400px;
+  
+}
+
+footer {
+  font-size: $font-body-small;
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10%;
+
+    .column {
+      align-items: center;
+      flex: 400px;
+
+      ul {
+        @include list-styles;
+
+        li {
+          padding-bottom: 5px;
+        }
+      }
+
+      .social {
+        padding-top: 10px;
+
+        img {
+          padding-right: 10px;
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    border-top: solid $color-gray;
+    padding: 25px 10%;
+    display: flex;
+    justify-content: space-between;
+
+    div {
+      vertical-align: 50%;
+    }
+  }
+
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #f0f0f0;
+}

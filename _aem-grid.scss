@@ -1,0 +1,127 @@
+/* grid component */
+.aem-Grid {
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 100%;
+  }
+  
+  /* placeholder for new components */
+  .aem-Grid-newComponent {
+    margin: 0;
+  }
+  
+  /* column of a grid */
+  .aem-GridColumn {
+    box-sizing: border-box;
+  }
+  
+  /* force showing hidden */
+  .aem-GridShowHidden > .aem-Grid > .aem-GridColumn {
+    display: block !important;
+  }
+  
+  /* maximum amount of grid cells to be provided */
+  $max_col: 12 !default;
+  
+  $grid-gutter-width: 30px;
+  
+  /* Generates all the rules for the grid columns up to the given amount of column */
+  @mixin generate-columns($columnTotal, $breakPoint, $column: 1) {
+    @if $column <= $columnTotal {
+      > .aem-GridColumn.aem-GridColumn--#{$breakPoint}--#{$column} {
+        width: ($column * 100% / $columnTotal);
+      }
+  
+      @include generate-columns($columnTotal, $breakPoint, ($column + 1));
+    }
+  }
+  
+  /* Generates all the rules for the grid column offset up to the given amount of column */
+  @mixin generate-offsets($columnTotal, $breakPoint, $column: 0) {
+    @if $column <= $columnTotal {
+      > .aem-GridColumn.aem-GridColumn--offset--#{$breakPoint}--#{$column} {
+        margin-left: ($column * 100% / $columnTotal);
+      }
+  
+      @include generate-offsets($columnTotal, $breakPoint, ($column + 1));
+    }
+  }
+  
+  /* Generates all the rules for the grid and columns for the given break point and total of columns */
+  @mixin generate-grid-columns($breakPoint, $columnTotal) {
+    @if $columnTotal > 0 {
+      &.aem-Grid--#{$columnTotal} {
+        @include generate-columns($columnTotal, $breakPoint);
+        @include generate-offsets($columnTotal, $breakPoint);
+      }
+  
+      &.aem-Grid--#{$breakPoint}--#{$columnTotal} {
+        @include generate-columns($columnTotal, $breakPoint);
+        @include generate-offsets($columnTotal, $breakPoint);
+      }
+    }
+  }
+  
+  /* Generates all the rules for the grids and columns */
+  @mixin grid-loop($breakPoint, $columnTotal, $column: 1) {
+    @if $column <= $columnTotal {
+      @include generate-grid-columns($breakPoint, $column);
+      @include grid-loop($breakPoint, $columnTotal, ($column + 1));
+    }
+  }
+  
+  /* API function to be called to generate a grid config */
+  @mixin generate-grid($breakPoint, $columnTotal) {
+    @include grid-loop($breakPoint, $columnTotal);
+  }
+  
+  @mixin generate-grid-hide($breakPoint) {
+    > .aem-GridColumn.aem-GridColumn--#{$breakPoint}--hide {
+      /* hide behavior */
+      display: none;
+    }
+  }
+  
+  /* default breakpoint */
+  .aem-Grid {
+    @include generate-grid(default, $max_col);
+    width: auto;
+  }
+  @media (min-width: 1201px) {
+    .aem-Grid {
+      @include generate-grid-hide(default);
+    }
+  }
+  
+  /* phone breakpoint */
+  @media (max-width: 650px) {
+    .aem-Grid {
+      @include generate-grid(phone, $max_col);
+      @include generate-grid-hide(phone);
+    }
+  }
+  
+  /* tablet breakpoint */
+  @media (min-width: 651px) and (max-width: 1200px) {
+    .aem-Grid {
+      @include generate-grid(tablet, $max_col);
+      @include generate-grid-hide(tablet);
+    }
+  }
+  
+  .aem-GridColumn {
+    padding-left: $grid-gutter-width/2;
+    padding-right: $grid-gutter-width/2;
+  }
+  
+  .responsivegrid.aem-GridColumn.aem-GridColumn--default--16 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .responsivegrid.aem-GridColumn.aem-GridColumn--default--16
+    > .aem-GridColumn.aem-GridColumn--default--16 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
